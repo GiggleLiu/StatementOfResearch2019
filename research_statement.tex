@@ -1,0 +1,122 @@
+\documentclass[]{article}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{skull}
+\usepackage[affil-it]{authblk}
+\usepackage{graphicx}% Include figure files
+%\usepackage{subfig}
+\usepackage{subcaption}
+\usepackage{bm}% bold math
+\usepackage{color}
+%\bibliographystyle{pnas2009}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage{booktabs}       % professional-quality tables
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
+%\usepackage[unicode=true]{hyperref}
+%\hypersetup{
+%            pdfborder={0 0 0},
+%            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\definecolor{or}{rgb}{0.0,0.5,0.9}
+%\definecolor{gr}{gray}{0.4}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newcommand{\red}[1]{[{\bf  \color{red}{LW: #1}}]}
+\newcommand{\blue}[1]{[{\bf  \color{blue}{JG: #1}}]}
+\newcommand{\referee}[1]{\item {\color{or}{#1}}}
+
+
+\date{}
+\title{Statement of Research}
+\author{Jinguo Liu}
+
+\begin{document}
+\maketitle
+
+In the era of noisy intermediate scale quantum devices, both the number of qubits and time of coherence are limited. A class of quantum algorithms that does not require expensive error correction appears. They runs in classical-quantum hybrid approach, where a parametrized quantum circuit provides a variational ansatz. A classical optimizer tunes the circuit parameters to reduce the expected energy of the target Hamiltonian of the output quantum state. There were already several small scale experimental demonstrations of VQE for molecules and quantum magnets~\cite{Shen2017, OMalley2016, Kandala2017,Colless2018, Hempel2018}. These early experiments mostly employed gradient free or Bayesian approaches for classical optimization. Recent progress on unbiased gradient estimation on quantum circuits~\cite{Li2017a, Mitarai2018, Liu2018, Verdon2018, Schuld2018, Javier2018, Bergholm2018, Guerreschi2017,Farhi2018,Romero2018,Harrow2019,Dallaire2018} breaks the information bottleneck between classical and quantum processors, thus
+providing a route towards scalable optimization of circuits with a large number of parameters.
+%Gradient vanishing has apparently become a cloud in the sky for all kinds of applications that involve variational optimization of quantum circuits,
+
+There are nevertheless more challenges in the training of variational quantum circuits.
+The gradients of an unstructured, randomly parametrized circuit vanish exponentially as a function of the number of parameters~\cite{McClean2018} due to the concentration of measure in high dimensional spaces ~\cite{Gross2009,Bremner2009}.
+Intuitively, this could be understood by the fact that the overlap between a random initial
+quantum state and a target state is exponentially small in the many-body Hilbert space. This difficulty motivates one to design the circuit architecture and initialize the circuit parameters with insights from classical tensor networks~\cite{Huggins2019, Kim2017,Peng2019}
+%in quantum machine learning~\cite{Stoudenmire2016, Cheng2018, Han2018},
+and quantum chemistry ansatz~\cite{Yung2014, Lee2018, Barkoutsos2018}. %But still no solid evidence has been seen that one can get rid of the exponentially decaying behavior of gradients in any practical case.
+Furthermore, since the number of required qubits is the same as the problem size in the standard VQE applications, one has to push up the number of controllable qubits way beyond the current technology to convincingly surpass the classical simulation approach in finding the ground states of quantum many-body systems.
+Related approaches such as  the quantum approximate optimization algorithm~\cite{Farhi2014} and related field such as quantum machine learning~\cite{Ciliberto2017, Mitarai2018, Liu2018} suffer from the same problem.
+
+
+\section{Past Research}
+\subsection{Quantum Circuit born machine}
+Generative modeling is at the frontier of deep learning research and real-world applications. For example, see \href{https://blog.openai.com/generative-models/}{openai's image generation example} and the \href{https://deepmind.com/blog/wavenet-generative-model-raw-audio/}{wavenet example of audio generation}. In contrast to much simpler discriminative tasks, one needs to model high-dimensional probability density and generate samples efficiently in generative modeling. Generative models with implicit output probabilities and discrete data are crucial for applications such as natural language processing, decision making, and chemical structure design. However, it remains an open research challenge to perform scalable training of these models since most of the deep learning technique relies on the differentiable learning of the objective functions. 
+
+We argue that generative modeling via projective sampling on qubits is a killer application of quantum circuits, which shows "quantum supremacy" for **useful tasks**. While compared to more widespread discriminative tasks, the inherent probabilistic and unitary nature of quantum circuits offer unique and even greater opportunities to outperform the classical approaches. 
+
+Manuscript PhysRevA.98.062324 presents a fresh approach to quantum machine learning by using the quantum circuits as probabilistic generative models. We call this approach Born Machines since they exploit the Born's rule of the quantum mechanics.
+With the differentiable training strategy presented in the manuscript, the quantum circuit Born machine exhibits clear quantum advantage over classical neural networks. The proposed training approach is both practical for near-term quantum devices and scalable for future large-scale real-world applications. 
+
+\subsection{Tensor network inspired quantum circuits}
+Solving the ground state of a quantum many-body system is one of the killer applications of a  near-term noisy intermediate scale quantum computer. These studies are crucial for understanding the physical and chemical properties of strongly correlated quantum matter. Classical simulation approaches such as quantum Monte Carlo and tensor network algorithms have faced fundamental issues such as the negative sign problem and unfavorable computational efforts. While performing variational optimization of a quantum circuit ansatz has high potential in offering a long-sought answer to these questions.   
+
+To date, there have been several experiments on this so-called variational quantum eigensolver (VQE) on various quantum hardware platforms including works from the Google team O'Malley et al PRX '16  and the IBM team Kandala  et al, Nature '17.  However, these experiments are restricted to small toy problems due to the limited number of qubits on the devices.  
+
+Manuscript PhysRevResearch.1.023025 presents an algorithmic solution to this pressing problem of scaling up the VQE experiment.  In the proposed qubit efficient VQE scheme, one can study the ground state property of a large quantum system using a smaller number of qubits. The approach exploits the relative low entanglement entropy property of typical physics and chemistry problems. As a concrete example, we have obtained the ground state of a frustrated Heisenberg model on a 4 x 4 square lattice up to fidelity 97% with only six qubits. This protocol can be readily implemented with current quantum technology and offer new physical results to more challenging problems. We also provide a projected entangled pair of states (PEPS) inspired quantum circuits as an approach for scalability and pushed the size of lattice to 6 x 6.
+To solve the same problem with exact diagonalization, one probably needs a server (although the precision of results is higher). With our new ansatz, a faithful simulation of the quantum algorithm requires only a GPU card. A quantum computer is able to provide an exponential speedup in terms of tensor contraction comparing with a classical device, which demonstrates quantum advantage.
+
+\subsection{Yao.jl: a variational quantum simulator}
+We introduce Yao, an extensible, efficient open source software framework for
+quantum algorithm design. Yao focuses on differentiable programming on near-term quantum circuits. 
+We introduce a quantum block intermediate representation, which represents quantum circuits as hierarchical tree structures. 
+Yao realizes a constant memory automatic differentiation which exploits reversible feature of quantum computing. 
+Moreover, Yao utilizes Single Program Multiple Data design to exploit data parallelism and GPU acceleration for the simulation of variational quantum circuits and quantum machine learning tasks. 
+The Yao framework is not only powerful for representing and manipulating quantum
+circuits, but also efficient for practical simulation tasks. 
+
+The above benchmark shows that with extensible specialization on different pattern of quantum blocks, the performance of
+circuit emulator written in abstract and generic style with pure Julia can acheive similar single gate performance and
+better circuit performance comparing to manual tuned C++ emulator qulacs~\cite{qulacs2019variational} . For large number of qubits, since the
+simulation complexity of an arbitrary full amplitude quantum state grows exponentially, the overhead become less significant.
+To acheive the best performance on above benchmarks, one needs to handle Single Instruction
+Multiple Data (SIMD), cache locality on CPU correctly while implementing corresponding specialized algorithms.
+We implement these requirements by writing SIMD friendly Julia code, carefully designed classical register data structure and
+compiler specialization based on QBIR. The CUDA backend is also written in pure Julia with \texttt{CUDAnative.jl}~\cite{besard2018effective}.
+Thus although our symbolic backend, CUDA backend and CPU backend share most of the infrastructure and
+implementation, we can still acheive similar and even better performance than manual tuned C++ and CUDA C implementation.
+
+
+\section{Research plan}
+
+\end{document}
