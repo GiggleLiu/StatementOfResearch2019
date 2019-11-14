@@ -95,31 +95,30 @@ Moreover, Yao utilizes Single Program Multiple Data design to exploit data paral
 The Yao framework is not only powerful for representing and manipulating quantum
 circuits, but also efficient for practical simulation tasks. 
 
-Benchmark shows that with extensible specialization on different pattern of quantum blocks, the performance of
+Benchmarks show that with extensible specialization on different pattern of quantum blocks, the performance of
 circuit emulator written in abstract and generic style with pure Julia can acheive similar single gate performance and
-better circuit performance comparing to manual tuned C++ emulator qulacs~\cite{qulacs2019variational} . For large number of qubits, since the
-simulation complexity of an arbitrary full amplitude quantum state grows exponentially, the overhead become less significant.
-To acheive the best performance on above benchmarks, one needs to handle Single Instruction
-Multiple Data (SIMD), cache locality on CPU correctly while implementing corresponding specialized algorithms.
-We implement these requirements by writing SIMD friendly Julia code, carefully designed classical register data structure and
-compiler specialization based on QBIR. The CUDA backend is also written in pure Julia with \texttt{CUDAnative.jl}~\cite{besard2018effective}.
-Thus although our symbolic backend, CUDA backend and CPU backend share most of the infrastructure and
-implementation, we can still acheive similar and even better performance than manual tuned C++ and CUDA C implementation.
-
+better circuit performance comparing to manual tuned C++ emulator qulacs~\cite{qulacs2019variational} . 
+The automatic differentiaion engine in Yao is specially designed, instead of using expensive caching in a traditional computational graph, it implements a reversible style autodiff.
+Quantum block intermediate representation acts as a reversible program tape, from which all intermediate states can be recovered.
 
 \section{Research plan}
-Variational algorithms are not siver bullets for optimization problems, they also face the problem of vanishing gradient and gate noises.
-To prove quantum advantage, we still need a fair benchmark,
+Variational algorithms are not silver bullets for optimization problems, they also face the problem of vanishing gradient and gate noises~\cite{}.
+To prove quantum advantage, we still need a fair benchmark.
 
-Many classical hard problems in real life can be reduced to a NP-complete problem, these problems include air-plane routing, bin-packing. NP-complete problems can be mapped from one another.
-Maximum independent set is a famous example of NP-complete problem, it a problem with general interested, which is probably can be solved much faster on a device with better performance.
+\subsection{Benchmarking NP-hard problems}
+Many classical hard problems in real life can be reduced to a NP-complete problem, including famous traveling sales man, bin-packing and maximum indenepdant set problems. NP-complete problems can be mapped from one another, thus solving any one of them efficiently would have profunding effect to computer science.
+For example, Maximum independent set is a famous example of NP-complete problem of general interested. Some variational algorithms suggests that a quantum device can provide better performence.
+On the other side, some widely used algorithms in physics can be used to solve graph problems, like tensor network and message passing.
+With preliminary results of mapping a maximum independent set problem to a tensor network of tropical numbers, I wish it can perform better than state of the art agorithms in computer science field, from complexity analysis perspective.
 
+\subsection{Benchmarking NP-hard problems}
 The advantages of Quantum devices are not limited to speed, reversibility also counts.
+Although all microscopic physical processes are reversible, our widely used classical computational models are not.
+The loss of reversibility in classical Turing machine rooted the fact that although every one of "+, -, *, /" in the instruction set are differentiable and aAll functions are made up of these basic instructions, machine learning requires a lot of "primitives" to help back propagation.
+Instruction level back-propagation is the dream of many machine learning scientists. It turns out to be possible on a Reversible Turing machine.
+Reversible programming domain specific language is an exciting field also because its potential in quantum computing.
+For a long period, the dissipation and decoherence on quantum devices are inevitable, meanwhile there is no ideal dissipation source in quantum world.
+Instead noisy intermediate scale quantum devices, large scale low entangled quantum device that implementing invertible computing 
 
-There is a wield facts in the field of machine learning,
-
-one is although all microscopic physical processes are reversible, our widely used classical computational model is not, another is although every one of "+, -, *, /" in the instruction set are differentiable and all functions are made up of these basic instructions, machine learning requires a lot of "primitives" to help back propagation. The reason why
-
-Reversible programming is a computational framework, it turns out, by utilizing reversible programming, instruction level 
 
 \end{document}
