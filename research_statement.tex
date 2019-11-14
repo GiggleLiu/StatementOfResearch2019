@@ -1,72 +1,78 @@
-\documentclass[]{article}
+\documentclass[aps,longbibliography,english,superscriptaddress]{revtex4-1}
 \usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
-\usepackage{lmodern}
-\usepackage{amssymb,amsmath}
-\usepackage{skull}
-\usepackage[affil-it]{authblk}
-\usepackage{graphicx}% Include figure files
-%\usepackage{subfig}
-\usepackage{subcaption}
-\usepackage{bm}% bold math
-\usepackage{color}
-%\bibliographystyle{pnas2009}
-\usepackage{fullpage}
-\usepackage{enumitem}
-\usepackage{booktabs}       % professional-quality tables
-
-% use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
-%\usepackage[unicode=true]{hyperref}
-%\hypersetup{
-%            pdfborder={0 0 0},
-%            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-\definecolor{or}{rgb}{0.0,0.5,0.9}
-%\definecolor{gr}{gray}{0.4}
-
-% set default figure placement to htbp
+\usepackage[T1]{fontenc}
+%\usepackage[latin9]{inputenc}
+\usepackage{amssymb}
+\usepackage{tabularx}
+%\usepackage{caption}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{rotating}
+\usepackage{booktabs}
+%\usepackage{unicode-math}
+%\usepackage{algorithm}% http://ctan.org/pkg/algorithm
+%\usepackage{algpseudocode}% http://ctan.org/pkg/algpseudocode
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
 \makeatletter
-\def\fps@figure{htbp}
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
 \makeatother
-\newcommand{\red}[1]{[{\bf  \color{red}{LW: #1}}]}
-\newcommand{\blue}[1]{[{\bf  \color{blue}{JG: #1}}]}
-\newcommand{\referee}[1]{\item {\color{or}{#1}}}
+
+\usepackage{bbm}
+\usepackage{graphicx, subfigure}
+\usepackage{amsmath,color}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage[normalem]{ulem}
+\usepackage{indentfirst}
+\usepackage{txfonts}
+\usepackage{qcircuit}
 
 
-\date{}
-\title{Statement of Research}
-\author{Jinguo Liu}
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=1000
+\hbadness=1000
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+
+%Journal reference.  Comma sets off: name, vol, page, year
+\def\journal #1, #2, #3, 1#4#5#6{{\sl #1~}{\bf #2}, #3 (1#4#5#6) }
+\def\pr{\journal Phys. Rev., }
+\def\prb{\journal Phys. Rev. B, }
+\def\prl{\journal Phys. Rev. Lett., }
+\def\pl{\journal Phys. Lett., }
+%\def\np{\journal Nucl. Phys., }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\makeatother
+
+\usepackage{babel}
 
 \begin{document}
-\maketitle
+\begin{center}
+    \vspace*{1cm}
 
-In the era of noisy intermediate scale quantum devices, both the number of qubits and time of coherence are limited. Variational quantum-classical algorithms that does not require expensive error correction becomes a practical approach to prove quantum advantage. These algorithms run in classical-quantum hybrid approach, where a parametrized quantum circuit provides a variational ansatz. Recent progress on unbiased gradient estimation on quantum circuits~\cite{Li2017a, Mitarai2018, Liu2018, Verdon2018, Schuld2018, Javier2018, Bergholm2018, Guerreschi2017,Farhi2018,Romero2018,Harrow2019,Dallaire2018} breaks the information bottleneck between classical and quantum processors, thus providing a route towards scalable optimization of circuits with a large number of parameters.
-My past research mainly focus on finding possible variational quantum applications that provides provable advantage in fields like machine learning and quantum chemistry.
+    \Huge
+    \textbf{Statement of Research}\\
+    \vspace{0.5cm}
+    \large
+    \textbf{Jinguo Liu}\\
+    \vspace{0.5cm}
+    \small\textit{Institute of Physics, Chinese Academy of Sciences, Beijing 100190, China}
+    \vspace{0.5cm}
+\end{center}
+
+In the era of noisy intermediate scale quantum devices, both the number of qubits and time of coherence are limited. Variational quantum-classical algorithms that does not require expensive error correction becomes a practical approach to prove quantum advantage. These algorithms run in classical-quantum hybrid mode, where a parametrized quantum circuit playes the role of a variational ansatz as bit string generator. Recent progress on unbiased gradient estimation on quantum circuits~\cite{Li2017a, Mitarai2018} breaks the information bottleneck between classical and quantum processors, thus providing a route towards scalable optimization of circuits with a large number of parameters.
+My past research mainly focus on finding possible variational quantum applications that provides provable advantage in machine learning and quantum chemistry.
 
 \section{Past Research}
 \subsection{Quantum Circuit born machine}
@@ -87,22 +93,20 @@ Ref.\cite{Liu2019} presents an algorithmic solution to this pressing problem of 
 To solve the same problem with exact diagonalization, one probably needs a server (although the precision of results is higher). With our new ansatz, a faithful simulation of the quantum algorithm requires only a GPU card. A quantum computer is able to provide an exponential speedup in terms of tensor contraction comparing with a classical device, which demonstrates quantum advantage.
 
 \subsection{Yao.jl: a variational quantum simulator}
-Yao is an extensible, efficient open source software framework for
-quantum algorithm design. Yao focuses on differentiable programming on near-term quantum circuits. 
+\href{https://github.com/QuantumBFS/Yao.jl}{Yao} is an extensible, efficient open source software framework for quantum algorithm design. Yao focuses on differentiable programming on near-term quantum circuits. 
 We introduce a quantum block intermediate representation, which represents quantum circuits as hierarchical tree structures. 
 Yao realizes a constant memory automatic differentiation which exploits reversible feature of quantum computing. 
 Moreover, Yao utilizes Single Program Multiple Data design to exploit data parallelism and GPU acceleration for the simulation of variational quantum circuits and quantum machine learning tasks. 
-The Yao framework is not only powerful for representing and manipulating quantum
-circuits, but also efficient for practical simulation tasks. 
+The Yao framework is not only powerful for representing and manipulating quantum circuits, but also efficient for practical simulation tasks. 
 
 Benchmarks show that with extensible specialization on different pattern of quantum blocks, the performance of
 circuit emulator written in abstract and generic style with pure Julia can acheive similar single gate performance and
-better circuit performance comparing to manual tuned C++ emulator qulacs~\cite{qulacs2019variational} . 
+better circuit performance comparing to manual tuned C++ emulator \href{https://github.com/qulacs/qulacs}{qulacs}.
 The automatic differentiaion engine in Yao is specially designed, instead of using expensive caching in a traditional computational graph, it implements a reversible style autodiff.
 Quantum block intermediate representation acts as a reversible program tape, from which all intermediate states can be recovered.
 
 \section{Research plan}
-Variational algorithms are not silver bullets for optimization problems, they also face the problem of vanishing gradient and gate noises~\cite{}.
+Variational algorithms are not silver bullets for optimization problems, they also face the problem of vanishing gradient and gate noises~\cite{McClean2018}.
 To prove quantum advantage, we still need a fair benchmark.
 
 \subsection{Benchmarking NP-hard problems}
@@ -111,14 +115,17 @@ For example, Maximum independent set is a famous example of NP-complete problem 
 On the other side, some widely used algorithms in physics can be used to solve graph problems, like tensor network and message passing.
 With preliminary results of mapping a maximum independent set problem to a tensor network of tropical numbers, I wish it can perform better than state of the art agorithms in computer science field, from complexity analysis perspective.
 
-\subsection{Benchmarking NP-hard problems}
+\subsection{Reversible Arithmatics}
 The advantages of Quantum devices are not limited to speed, reversibility also counts.
 Although all microscopic physical processes are reversible, our widely used classical computational models are not.
 The loss of reversibility in classical Turing machine rooted the fact that although every one of "+, -, *, /" in the instruction set are differentiable and aAll functions are made up of these basic instructions, machine learning requires a lot of "primitives" to help back propagation.
-Instruction level back-propagation is the dream of many machine learning scientists. It turns out to be possible on a Reversible Turing machine.
+Instruction level back-propagation is the dream of many machine learning scientists. It turns out to be possible on a Reversible Turing machine~\cite{Perumalla2013}.
 Reversible programming domain specific language is an exciting field also because its potential in quantum computing.
 For a long period, the dissipation and decoherence on quantum devices are inevitable, meanwhile there is no ideal dissipation source in quantum world.
 Instead noisy intermediate scale quantum devices, large scale low entangled quantum device that implementing invertible computing 
 
+\bibliographystyle{apsrev4-1}
+\bibliography{ref.bib}
+\appendix
 
 \end{document}
