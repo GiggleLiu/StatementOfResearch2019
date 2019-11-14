@@ -5,6 +5,6 @@
 * Research Statement and Research Plan
 [research_statement.pdf](research_statement.pdf)
 
-## Submit Link
+## Submition Link
 
 https://academicjobsonline.org/ajo/jobs/14549
