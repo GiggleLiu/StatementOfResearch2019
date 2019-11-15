@@ -71,25 +71,25 @@
     \vspace{0.5cm}
 \end{center}
 
-In the era of noisy intermediate scale quantum devices, both the number of qubits and time of coherence are limited. Variational quantum-classical algorithms that does not require expensive error correction becomes a practical approach to prove quantum advantage. These algorithms run in classical-quantum hybrid mode, where a parametrized quantum circuit playes the role of a variational ansatz as bit string generator. Recent progress on unbiased gradient estimation on quantum circuits~\cite{Li2017a, Mitarai2018} breaks the information bottleneck between classical and quantum processors, thus providing a route towards scalable optimization of circuits with a large number of parameters.
-My past research mainly focus on finding possible variational quantum applications that provides provable advantage in machine learning and quantum chemistry.
+In the era of noisy intermediate scale quantum devices, both the number of qubits and time of coherence are limited. Variational quantum-classical algorithms that does not require expensive error correction becomes a practical approach to prove quantum advantage. These algorithms run in classical-quantum hybrid mode, where a parametrized quantum circuit plays the role of a variational ansatz as bit string generator. Recent progress on unbiased gradient estimation on quantum circuits~\cite{Li2017a, Mitarai2018} breaks the information bottleneck between classical and quantum processors, thus providing a route towards scalable optimization of circuits with a large number of parameters.
+My past research mainly focus on finding possible variational quantum applications that provide provable advantage in machine learning and quantum chemistry.
 
 \section{Past Research}
 \subsection{Quantum Circuit born machine}
 Generative modeling is at the frontier of deep learning research and real-world applications. For example, see \href{https://blog.openai.com/generative-models/}{openai's image generation example} and the \href{https://deepmind.com/blog/wavenet-generative-model-raw-audio/}{wavenet example of audio generation}. In contrast to much simpler discriminative tasks, one needs to model high-dimensional probability density and generate samples efficiently in generative modeling. Generative models with implicit output probabilities and discrete data are crucial for applications such as natural language processing, decision making, and chemical structure design. However, it remains an open research challenge to perform scalable training of these models since most of the deep learning technique relies on the differentiable learning of the objective functions. 
 
-We argue that generative modeling via projective sampling on qubits is a killer application of quantum circuits, which shows "quantum supremacy" for **useful tasks**. While compared to more widespread discriminative tasks, the inherent probabilistic and unitary nature of quantum circuits offer unique and even greater opportunities to outperform the classical approaches. 
+We argue that generative modeling via projective sampling on qubits is a killer application of quantum circuits, which shows "quantum supremacy" for **useful tasks**. While compared to more widespread discriminative tasks, the inherent probabilistic and unitary nature of quantum circuits offers unique and even greater opportunities to outperform the classical approaches. 
 
 Ref.\cite{Liu2018} presents a fresh approach to quantum machine learning by using the quantum circuits as probabilistic generative models. We call this approach Born Machines since they exploit the Born's rule of the quantum mechanics.
 With the differentiable training strategy presented in the manuscript, the quantum circuit Born machine exhibits clear quantum advantage over classical neural networks. The proposed training approach is both practical for near-term quantum devices and scalable for future large-scale real-world applications.
 
 
 \subsection{Tensor network inspired quantum circuits for quantum chemistry}
-Solving the ground state of a quantum many-body system is one of the killer applications of a  near-term noisy intermediate scale quantum computer. These studies are crucial for understanding the physical and chemical properties of strongly correlated quantum matter. Classical simulation approaches such as quantum Monte Carlo and tensor network algorithms have faced fundamental issues such as the negative sign problem and unfavorable computational efforts. While performing variational optimization of a quantum circuit ansatz has high potential in offering a long-sought answer to these questions.   
+Solving the ground state of a quantum many-body system is one of the killer applications of a  near-term noisy intermediate scale quantum computer. These studies are crucial for understanding the physical and chemical properties of strongly correlated quantum matter. Classical simulation approaches such as quantum Monte Carlo and tensor network algorithms have faced fundamental issues such as the negative sign problem and unfavorable computational efforts. On the other hand, performing variational optimization of a quantum circuit ansatz has high potential in offering a long-sought answer to these questions.   
 
 To date, there have been several experiments on this so-called variational quantum eigensolver (VQE) on various quantum hardware platforms including works from the Google team O'Malley et al PRX '16~\cite{OMalley2016}  and the IBM team Kandala  et al, Nature '17~\cite{Kandala2017}.  However, these experiments are restricted to small toy problems due to the limited number of qubits on the devices.  
 
-Ref.\cite{Liu2019} presents an algorithmic solution to this pressing problem of scaling up the VQE experiment.  In the proposed qubit efficient VQE scheme, one can study the ground state property of a large quantum system using a smaller number of qubits. The approach exploits the relative low entanglement entropy property of typical physics and chemistry problems. As a concrete example, we have obtained the ground state of a frustrated Heisenberg model on a 4 x 4 square lattice up to fidelity 97\% with only six qubits. This protocol can be readily implemented with current quantum technology and offer new physical results to more challenging problems. We also provide a projected entangled pair of states (PEPS) inspired quantum circuits as an approach for scalability and pushed the size of lattice to 6 x 6.
+Ref.~\cite{Liu2019} presents an algorithmic solution to this pressing problem of scaling up the VQE experiment.  In the proposed qubit-efficient VQE scheme, one can study the ground state property of a large quantum system using a smaller number of qubits. The approach exploits the relative low entanglement entropy property of typical physics and chemistry problems. As a concrete example, we have obtained the ground state of a frustrated Heisenberg model on a 4 x 4 square lattice up to fidelity 97\% with only six qubits. This protocol can be readily implemented with current quantum technology and offer new physical results to more challenging problems. We also provide a projected entangled pair of states (PEPS) inspired quantum circuits as an approach for scalability and pushed the size of lattice to 6 x 6.
 To solve the same problem with exact diagonalization, one probably needs a server (although the precision of results is higher). With our new ansatz, a faithful simulation of the quantum algorithm requires only a GPU card. A quantum computer is able to provide an exponential speedup in terms of tensor contraction comparing with a classical device, which demonstrates quantum advantage.
 
 \subsection{Yao.jl: a variational quantum simulator}
@@ -102,27 +102,36 @@ The Yao framework is not only powerful for representing and manipulating quantum
 Benchmarks show that with extensible specialization on different pattern of quantum blocks, the performance of
 circuit emulator written in abstract and generic style with pure Julia can acheive similar single gate performance and
 better circuit performance comparing to manual tuned C++ emulator \href{https://github.com/qulacs/qulacs}{qulacs}.
-The automatic differentiaion engine in Yao is specially designed, instead of using expensive caching in a traditional computational graph, it implements a reversible style autodiff.
+The automatic differentiaion engine in Yao is specially designed, instead of using expensive caching in a traditional computational graph --- it implements a reversible style autodiff.
 Quantum block intermediate representation acts as a reversible program tape, from which all intermediate states can be recovered.
 
 \section{Research plan}
-Variational algorithms are not silver bullets for optimization problems, they also face the problem of vanishing gradient and gate noises~\cite{McClean2018}.
-To prove quantum advantage, we still need a fair benchmark.
+Variational algorithms are not silver bullets for optimization problems. They also face the problem of vanishing gradient and gate noises~\cite{McClean2018}.
+To demonstrate quantum advantage, we would need very careful and thorough benchmarking.
 
 \subsection{Benchmarking NP-hard problems}
-Many classical hard problems in real life can be reduced to a NP-complete problem, including famous traveling sales man, bin-packing and maximum indenepdant set problems. NP-complete problems can be mapped from one another, thus solving any one of them efficiently would have profunding effect to computer science.
-For example, Maximum independent set is a famous example of NP-complete problem of general interested. Some variational algorithms suggests that a quantum device can provide better performence.
+Many classical hard problems in real life can be reduced to a NP-complete problem, including the famous traveling salesman, bin-packing and maximum independent set problems. NP-complete problems can be mapped to one another, thus solving any one of them efficiently would have profound impact to computer science.
+For example, Maximum independent set is a famous example of NP-complete problem of general interest. Some variational algorithms suggest that a quantum device may provide better performance.
 On the other side, some widely used algorithms in physics can be used to solve graph problems, like tensor network and message passing.
-With preliminary results of mapping a maximum independent set problem to a tensor network of tropical numbers, I wish it can perform better than state of the art agorithms in computer science field, from complexity analysis perspective.
+With preliminary results of mapping a maximum independent set problem to a tensor network of \href{https://en.wikipedia.org/wiki/Tropical\_geometry}{tropical numbers}, it has the potential to perform better than state-of-the-art algorithms in computer science field, from the complexity analysis perspective.
+% what does tropical numbers mean?? 
 
-\subsection{Reversible Arithmatics}
-The advantages of Quantum devices are not limited to speed, reversibility also counts.
+\subsection{Tensor network inspired algorithms}
+Contracting a general tensor network is \#P-hard.
+There is no known algorithm to map a general tensor network contraction problem to a quantum simulation.
+However, it is possible to find some quantum-contractable tensor network that corresponds to some interesting problems.
+In one of my past works, a quantum project entangled pair of state is used as the wave function ansatz to solve the exponential complex contraction problem of classical tensor networks.
+Instead of using the quantum circuit as a wave function ansatz, I'd wish to transformed some graph problems in computer science to a quantum program, so that the quantum advantage can be proved via complexity analysis.
+
+\subsection{Reversible arithmetics}
+The advantages of quantum devices are not limited to speed; reversibility also counts.
 Although all microscopic physical processes are reversible, our widely used classical computational models are not.
-The loss of reversibility in classical Turing machine rooted the fact that although every one of "+, -, *, /" in the instruction set are differentiable and aAll functions are made up of these basic instructions, machine learning requires a lot of "primitives" to help back propagation.
+The loss of reversibility in classical Turing machine is the root of the fact that although every one of "+, -, *, /" in the instruction set are differentiable and all functions are made up of these basic instructions, machine learning requires a lot of "primitives" to help back propagation.
 Instruction level back-propagation is the dream of many machine learning scientists. It turns out to be possible on a Reversible Turing machine~\cite{Perumalla2013}.
 Reversible programming domain specific language is an exciting field also because its potential in quantum computing.
-For a long period, the dissipation and decoherence on quantum devices are inevitable, meanwhile there is no ideal dissipation source in quantum world.
-Instead noisy intermediate scale quantum devices, large scale low entangled quantum device that implementing invertible computing 
+For a long period, the dissipation and decoherence on quantum devices are inevitable, meanwhile there is no ideal dissipation source in the quantum world.
+Instead noisy intermediate scale quantum devices, large scale low entangled quantum device that implementing invertible computing may play a role of the intermediate state of classical computing. Even in the future, the compiling techniques including quantum arithmetics can be directly implemented on a quantum device.
+% this is not finished. 
 
 \bibliographystyle{apsrev4-1}
 \bibliography{ref.bib}
